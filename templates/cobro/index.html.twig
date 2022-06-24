@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cobro index{% endblock %}
+
+{% block body %}
+    <h1>Cobro index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idcobro</th>
+                <th>MontoTotal</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cobro in cobros %}
+            <tr>
+                <td>{{ cobro.idcobro }}</td>
+                <td>{{ cobro.montoTotal }}</td>
+                <td>
+                    <a href="{{ path('app_cobro_show', {'idcobro': cobro.idcobro}) }}">show</a>
+                    <a href="{{ path('app_cobro_edit', {'idcobro': cobro.idcobro}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cobro_new') }}">Create new</a>
+{% endblock %}

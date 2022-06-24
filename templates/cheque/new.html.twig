@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Cheque{% endblock %}
+
+{% block body %}
+    <h1>Create new Cheque</h1>
+
+    {{ include('cheque/_form.html.twig') }}
+
+    <a href="{{ path('app_cheque_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ModoPago index{% endblock %}
+
+{% block body %}
+    <h1>ModoPago index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdmodoPago</th>
+                <th>Nombre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for modo_pago in modo_pagos %}
+            <tr>
+                <td>{{ modo_pago.idmodoPago }}</td>
+                <td>{{ modo_pago.nombre }}</td>
+                <td>
+                    <a href="{{ path('app_modo_pago_show', {'idmodoPago': modo_pago.idmodoPago}) }}">show</a>
+                    <a href="{{ path('app_modo_pago_edit', {'idmodoPago': modo_pago.idmodoPago}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_modo_pago_new') }}">Create new</a>
+{% endblock %}

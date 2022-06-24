@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Departamento{% endblock %}
+
+{% block body %}
+    <h1>Departamento</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Iddepartamento</th>
+                <td>{{ departamento.iddepartamento }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ departamento.nombre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_departamento_index') }}">back to list</a>
+
+    <a href="{{ path('app_departamento_edit', {'iddepartamento': departamento.iddepartamento}) }}">edit</a>
+
+    {{ include('departamento/_delete_form.html.twig') }}
+{% endblock %}

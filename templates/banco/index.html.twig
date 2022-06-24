@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Banco index{% endblock %}
+
+{% block body %}
+    <h1>Banco index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idbanco</th>
+                <th>Banco</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for banco in bancos %}
+            <tr>
+                <td>{{ banco.idbanco }}</td>
+                <td>{{ banco.banco }}</td>
+                <td>
+                    <a href="{{ path('app_banco_show', {'idbanco': banco.idbanco}) }}">show</a>
+                    <a href="{{ path('app_banco_edit', {'idbanco': banco.idbanco}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_banco_new') }}">Create new</a>
+{% endblock %}

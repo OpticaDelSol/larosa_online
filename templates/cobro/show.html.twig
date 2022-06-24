@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cobro{% endblock %}
+
+{% block body %}
+    <h1>Cobro</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Idcobro</th>
+                <td>{{ cobro.idcobro }}</td>
+            </tr>
+            <tr>
+                <th>MontoTotal</th>
+                <td>{{ cobro.montoTotal }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cobro_index') }}">back to list</a>
+
+    <a href="{{ path('app_cobro_edit', {'idcobro': cobro.idcobro}) }}">edit</a>
+
+    {{ include('cobro/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_cheque_delete', {'idcheque': cheque.idcheque}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cheque.idcheque) }}">
+    <button class="btn">Delete</button>
+</form>

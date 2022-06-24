@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ModoPago{% endblock %}
+
+{% block body %}
+    <h1>Edit ModoPago</h1>
+
+    {{ include('modo_pago/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_modo_pago_index') }}">back to list</a>
+
+    {{ include('modo_pago/_delete_form.html.twig') }}
+{% endblock %}

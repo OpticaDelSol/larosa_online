@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cheque{% endblock %}
+
+{% block body %}
+    <h1>Cheque</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Idcheque</th>
+                <td>{{ cheque.idcheque }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cheque_index') }}">back to list</a>
+
+    <a href="{{ path('app_cheque_edit', {'idcheque': cheque.idcheque}) }}">edit</a>
+
+    {{ include('cheque/_delete_form.html.twig') }}
+{% endblock %}

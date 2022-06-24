@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Cobro{% endblock %}
+
+{% block body %}
+    <h1>Create new Cobro</h1>
+
+    {{ include('cobro/_form.html.twig') }}
+
+    <a href="{{ path('app_cobro_index') }}">back to list</a>
+{% endblock %}

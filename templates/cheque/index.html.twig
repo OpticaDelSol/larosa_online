@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cheque index{% endblock %}
+
+{% block body %}
+    <h1>Cheque index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idcheque</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cheque in cheques %}
+            <tr>
+                <td>{{ cheque.idcheque }}</td>
+                <td>
+                    <a href="{{ path('app_cheque_show', {'idcheque': cheque.idcheque}) }}">show</a>
+                    <a href="{{ path('app_cheque_edit', {'idcheque': cheque.idcheque}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cheque_new') }}">Create new</a>
+{% endblock %}

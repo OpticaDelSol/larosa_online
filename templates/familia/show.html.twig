@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Familia{% endblock %}
+
+{% block body %}
+    <h1>Familia</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Idfamilia</th>
+                <td>{{ familium.idfamilia }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ familium.nombre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_familia_index') }}">back to list</a>
+
+    <a href="{{ path('app_familia_edit', {'idfamilia': familium.idfamilia}) }}">edit</a>
+
+    {{ include('familia/_delete_form.html.twig') }}
+{% endblock %}
