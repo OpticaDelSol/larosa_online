@@ -13,6 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/producto')]
 class ProductoController extends AbstractController
 {
+
+    public static function getEntityFqcn(): string
+    {
+        return Producto::class;
+    }
     #[Route('/', name: 'app_producto_index', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager): Response
     {

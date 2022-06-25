@@ -13,6 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/familia')]
 class FamiliaController extends AbstractController
 {
+    public static function getEntityFqcn(): string
+    {
+        return Familia::class;
+    }
+
     #[Route('/', name: 'app_familia_index', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager): Response
     {

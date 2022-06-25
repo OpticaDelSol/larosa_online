@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Venta index{% endblock %}
+
+{% block body %}
+    <h1>Venta index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idventa</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>FacturaNro</th>
+                <th>FacturaIva</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ventum in ventas %}
+            <tr>
+                <td>{{ ventum.idventa }}</td>
+                <td>{{ ventum.fecha }}</td>
+                <td>{{ ventum.total }}</td>
+                <td>{{ ventum.facturaNro }}</td>
+                <td>{{ ventum.facturaIva }}</td>
+                <td>
+                    <a href="{{ path('app_venta_show', {'idventa': ventum.idventa}) }}">show</a>
+                    <a href="{{ path('app_venta_edit', {'idventa': ventum.idventa}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_venta_new') }}">Create new</a>
+{% endblock %}

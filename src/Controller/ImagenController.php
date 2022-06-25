@@ -13,6 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/imagen')]
 class ImagenController extends AbstractController
 {
+    public static function getEntityFqcn(): string
+    {
+        return Imagen::class;
+    }
+
     #[Route('/', name: 'app_imagen_index', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager): Response
     {

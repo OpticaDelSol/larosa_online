@@ -13,6 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/modo/pago')]
 class ModoPagoController extends AbstractController
 {
+    public static function getEntityFqcn(): string
+    {
+        return ModoPago::class;
+    }
     #[Route('/', name: 'app_modo_pago_index', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager): Response
     {

@@ -13,6 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/localidad')]
 class LocalidadController extends AbstractController
 {
+
+    public static function getEntityFqcn(): string
+    {
+        return Localidad::class;
+    }
     #[Route('/', name: 'app_localidad_index', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager): Response
     {
