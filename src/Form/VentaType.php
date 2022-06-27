@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Venta;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,6 +20,12 @@ class VentaType extends AbstractType
             ->add('clienteIdcliente')
             ->add('vendedorIdvendedor')
         ;
+        $builder->add("productos", CollectionType::class,
+      [
+        'entry_type' => ProductoType::class,
+        'entry_options' => ['label' => false],
+      ]  
+    );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

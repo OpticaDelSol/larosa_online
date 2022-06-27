@@ -1,11 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Venta{% endblock %}
+{% block title %}Nueva Venta{% endblock %}
 
 {% block body %}
-    <h1>Create new Venta</h1>
+    <h1>Crear Nueva Venta</h1>
 
-    {{ include('venta/_form.html.twig') }}
+    {#{ include('venta/_form.html.twig') }#}
+
+    {{ form_start(form) }}
+        <div class="my-custom-class-for-errors">
+            {{ form_errors(form) }}
+        </div>
+
+        <div class="col-md-8">
+            {{ form_label(form.facturaIva, 'IVA: ') }}
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend">$</span>
+                </div>
+                {{ form_widget(form.facturaIva, {'attr':{'class':'form-control'}}) }}
+            </div>
+        </div>
+
+    {{ form_end(form) }}
 
     <a href="{{ path('app_venta_index') }}">back to list</a>
 {% endblock %}

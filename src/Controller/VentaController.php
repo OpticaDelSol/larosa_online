@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Producto;
 use App\Entity\Venta;
 use App\Form\VentaType;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +31,24 @@ class VentaController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $ventum = new Venta();
+
+        /**
+         * this code is for testing
+         */
+        for($i=0;$i<5;$i++){
+            $prod = new Producto();
+            $prod->setFechaCreacion( new \DateTime("now"));
+            $prod->setCantidad($i);
+
+            $ventum->getProductos()->add($prod);
+        }
+            
+         /* 
+            end of temporary code
+          */
+
         $form = $this->createForm(VentaType::class, $ventum);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

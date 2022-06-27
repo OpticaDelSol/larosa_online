@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Venta
@@ -68,6 +70,21 @@ class Venta
      * })
      */
     private $vendedorIdvendedor;
+
+    /*
+        collection of products that are part of a purchase
+    */
+
+    protected $productos;
+
+    public function __construct()
+    {
+        $this->productos=new ArrayCollection();
+    }
+
+    public function getProductos():Collection{
+        return $this->productos;
+    }
 
     public function getIdventa(): ?int
     {
