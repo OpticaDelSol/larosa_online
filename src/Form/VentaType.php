@@ -24,6 +24,7 @@ class VentaType extends AbstractType
       [
         'entry_type' => ProductoType::class,
         'entry_options' => ['label' => false],
+        'allow_add' => true,
       ]  
     );
     }

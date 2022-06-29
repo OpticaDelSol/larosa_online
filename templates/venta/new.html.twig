@@ -48,8 +48,57 @@
                 {{ form_widget(form.facturaNro, {'attr':{'class':'form-control'}}) }}
             </div>
         </div>
+    
+    <h3>Productos</h3>
+    <div id="venta_productos">
+    {# the data-index attribute is required for the JavaScript code below #}
+    <ul class="productos"
+            data-index="{{ form.productos|length > 0 ? form.productos|last.vars.name + 1 : 0 }}"
+            data-prototype="{{ form_widget(form.productos.vars.prototype)|e('html_attr') }}"
+        >
+    
+        {% for prod in form.productos %}
+            <li>{{ form_row(prod.cantidad) }}</li>
+        {% endfor %}
+        
+
+    </ul>
+    <button type="button" class="add_item_link" data-collection-holder-class="productos">Agregar Producto</button>
+    </div>
 
     {{ form_end(form) }}
 
     <a href="{{ path('app_venta_index') }}">back to list</a>
+{% endblock %}
+{% block javascripts_2 %}
+<script>
+
+
+
+const addFormToCollection = (e) => {
+  const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+
+  const item = document.createElement('li');
+
+  item.innerHTML = collectionHolder
+    .dataset
+    .prototype
+    .replace(
+      /__name__/g,
+      collectionHolder.dataset.index
+    );
+
+  collectionHolder.appendChild(item);
+
+  collectionHolder.dataset.index++;
+};
+
+document
+  .querySelectorAll('.add_item_link')
+  .forEach(btn => {
+      btn.addEventListener("click", addFormToCollection)
+  });
+  
+  
+</script>
 {% endblock %}
