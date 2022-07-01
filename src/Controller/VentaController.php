@@ -35,13 +35,13 @@ class VentaController extends AbstractController
         /**
          * this code is for testing
          */
-        for($i=0;$i<5;$i++){
+        /*for($i=0;$i<5;$i++){
             $prod = new Producto();
             $prod->setFechaCreacion( new \DateTime("now"));
             $prod->setCantidad($i);
 
             $ventum->getProductos()->add($prod);
-        }
+        }*/
             
          /* 
             end of temporary code

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProductoHasVenta index{% endblock %}
+
+{% block body %}
+    <h1>ProductoHasVenta index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Comision</th>
+                <th>Precio</th>
+                <th>Costo</th>
+                <th>Cantidad</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for producto_has_ventum in producto_has_ventas %}
+            <tr>
+                <td>{{ producto_has_ventum.comision }}</td>
+                <td>{{ producto_has_ventum.precio }}</td>
+                <td>{{ producto_has_ventum.costo }}</td>
+                <td>{{ producto_has_ventum.cantidad }}</td>
+                <td>
+                    <a href="{{ path('app_producto_has_venta_show', {'ventaIdventa': producto_has_ventum.ventaIdventa}) }}">show</a>
+                    <a href="{{ path('app_producto_has_venta_edit', {'ventaIdventa': producto_has_ventum.ventaIdventa}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_producto_has_venta_new') }}">Create new</a>
+{% endblock %}

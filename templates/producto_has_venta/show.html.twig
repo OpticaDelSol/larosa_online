@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProductoHasVenta{% endblock %}
+
+{% block body %}
+    <h1>ProductoHasVenta</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Comision</th>
+                <td>{{ producto_has_ventum.comision }}</td>
+            </tr>
+            <tr>
+                <th>Precio</th>
+                <td>{{ producto_has_ventum.precio }}</td>
+            </tr>
+            <tr>
+                <th>Costo</th>
+                <td>{{ producto_has_ventum.costo }}</td>
+            </tr>
+            <tr>
+                <th>Cantidad</th>
+                <td>{{ producto_has_ventum.cantidad }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_producto_has_venta_index') }}">back to list</a>
+
+    <a href="{{ path('app_producto_has_venta_edit', {'ventaIdventa': producto_has_ventum.ventaIdventa}) }}">edit</a>
+
+    {{ include('producto_has_venta/_delete_form.html.twig') }}
+{% endblock %}

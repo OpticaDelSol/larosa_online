@@ -5,80 +5,30 @@
 {% block body %}
     <h1>Crear Nueva Venta</h1>
 
-    {#{ include('venta/_form.html.twig') }#}
+    {{ include('venta/_form.html.twig') }}
 
-    {{ form_start(form) }}
-        <div class="my-custom-class-for-errors">
-            {{ form_errors(form) }}
-        </div>
-
-        <div class="col-md-8">
-            {{ form_label(form.facturaIva, 'IVA: ') }}
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupPrepend">$</span>
-                </div>
-                {{ form_widget(form.facturaIva, {'attr':{'class':'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-md-8">
-        {{form_label(form.fecha, 'Fecha:')}}
-        <div class="input-group">
-            <div class="input-group-prepend">
-            
-            </div>
-            {{form_widget(form.fecha, {'attr' : {'class':'form-control'}})}}
-        </div>
-        <div class="col-md-6">
-            {{form_label(form.total,'Total: ')}}
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupPrepend">$</span>
-                </div>
-                {{ form_widget(form.total, {'attr':{'class':'form-control'}}) }}
-            </div>
-        </div>
-        </div>
-        <div class="col-md-6">
-            {{form_label(form.facturaNro,'Nro: ')}}
-            <div class="input-group">
-                <div class="input-group-prepend">
-                  
-                </div>
-                {{ form_widget(form.facturaNro, {'attr':{'class':'form-control'}}) }}
-            </div>
-        </div>
     
-    <h3>Productos</h3>
-    <div id="venta_productos">
-    {# the data-index attribute is required for the JavaScript code below #}
-    <ul class="productos"
-            data-index="{{ form.productos|length > 0 ? form.productos|last.vars.name + 1 : 0 }}"
-            data-prototype="{{ form_widget(form.productos.vars.prototype)|e('html_attr') }}"
-        >
-    
-        {% for prod in form.productos %}
-            <li>{{ form_row(prod.cantidad) }}</li>
-        {% endfor %}
-        
-
-    </ul>
-    <button type="button" class="add_item_link" data-collection-holder-class="productos">Agregar Producto</button>
-    </div>
-
-    {{ form_end(form) }}
-
     <a href="{{ path('app_venta_index') }}">back to list</a>
 {% endblock %}
 {% block javascripts_2 %}
 <script>
 
 
+const removeElementFromCollection = (e) =>{
+  e.preventDefault();
+  // const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+   e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+}
 
 const addFormToCollection = (e) => {
   const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
 
   const item = document.createElement('li');
+  const button = document.createElement('button');
+  
+  button.innerHTML="Quitar";
+  button.classList.add("btn-danger");
+  button.classList.add("remove-product");
 
   item.innerHTML = collectionHolder
     .dataset
@@ -88,11 +38,21 @@ const addFormToCollection = (e) => {
       collectionHolder.dataset.index
     );
 
+    item.appendChild(button);
+
+  button.addEventListener("click",removeElementFromCollection);
+
   collectionHolder.appendChild(item);
 
   collectionHolder.dataset.index++;
 };
 
+
+document
+  .querySelectorAll('.remove-product')
+  .forEach(btn=>{
+    btn.addEventListener("click",removeElementFromCollection)
+  });
 document
   .querySelectorAll('.add_item_link')
   .forEach(btn => {
